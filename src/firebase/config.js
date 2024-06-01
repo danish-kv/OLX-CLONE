@@ -1,6 +1,8 @@
 import firebase from "firebase/compat/app";
 import 'firebase/compat/firestore';
-import 'firebase/compat/auth';  // Import Firebase Authentication
+import 'firebase/compat/storage';  // Import Firebase Storage
+import 'firebase/compat/auth'; 
+import 'firebase/compat/storage'; 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -14,4 +16,11 @@ const firebaseConfig = {
   };
 
 
-export default Firebase = firebase.initializeApp(firebaseConfig)
+// Initialize Firebase
+const Firebase = firebase.initializeApp(firebaseConfig);
+
+// Export the initialized Firebase app
+export default Firebase;
+
+// Get a non-default Storage bucket
+var storage = firebase.app().storage("gs://olx-clone-20977.appspot.com");

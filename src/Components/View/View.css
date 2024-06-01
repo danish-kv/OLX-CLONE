@@ -1,52 +1,88 @@
-
+/* Container for the entire view component */
 .viewParentDiv {
-    padding-top: 4em;
-    display: flex;
-  }
-  .viewParentDiv .imageShowDiv {
-    padding: 16px;
-    width: 70vw;
-  }
-  .viewParentDiv .imageShowDiv img {
-    width: 65vw;
-    height: 85vh;
-  }
-  
-  .viewParentDiv .rightSection {
-    padding: 16px;
-    margin-top: 3em;
-    width: 30vw;
-  }
-  
-  .viewParentDiv .rightSection .productDetails :first-child {
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #002f34;
-    font-size: 34px;
-    line-height: 32px;
-    margin-bottom: 20px;
-  }
-  
-  .viewParentDiv .rightSection .productDetails {
-    border: 1px solid black;
-    padding: 6px;
-    border-radius: 6px;
-    margin-bottom: 2em;
-    width: 100%;
-  }
-  
-  .viewParentDiv .rightSection .contactDetails {
-    border: 1px solid black;
-    padding: 6px;
-    border-radius: 6px;
-  }
-  
-  .viewParentDiv .rightSection .contactDetails :first-child {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 700;
-    color: #002f34;
-    font-weight: 400;
-    padding: 0;
-  }
-  
+  padding: 4em 2em;
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start; 
+  background-color: #f9f9f9; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Container for the image */
+.viewParentDiv .imageShowDiv {
+  padding: 16px;
+  width: 65%; 
+}
+
+/* Image styling */
+.viewParentDiv .imageShowDiv img {
+  width: 100%; 
+  height: auto;
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Right section containing product and contact details */
+.viewParentDiv .rightSection {
+  padding: 16px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Product details container */
+.viewParentDiv .rightSection .productDetails {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+/* First child of product details (price) */
+.viewParentDiv .rightSection .productDetails p:first-child {
+  font-weight: 700;
+  color: #002f34;
+  font-size: 28px;
+  margin: 0; 
+}
+
+/* Other text elements in product details */
+.viewParentDiv .rightSection .productDetails span,
+.viewParentDiv .rightSection .productDetails p {
+  font-size: 16px;
+  color: #757575;
+  margin: 0; 
+}
+
+/* Contact details container */
+.viewParentDiv .rightSection .contactDetails {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* First child of contact details (title) */
+.viewParentDiv .rightSection .contactDetails p:first-child {
+  font-size: 20px;
+  font-weight: 700;
+  color: #002f34;
+  margin: 0;
+}
+
+/* Other text elements in contact details */
+.viewParentDiv .rightSection .contactDetails p {
+  font-size: 16px;
+  color: #757575;
+  margin: 0; 
+}

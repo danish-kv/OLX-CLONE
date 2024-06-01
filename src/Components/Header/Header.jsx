@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useContext, useState } from "react";
 
-import './Header.css';
-import OlxLogo from '../../assets/OlxLogo';
-import Search from '../../assets/Search';
-import Arrow from '../../assets/Arrow';
-import SellButton from '../../assets/SellButton';
-import SellButtonPlus from '../../assets/SellButtonPlus';
-function Header() {
+import "./Header.css";
+import OlxLogo from "../../assets/OlxLogo";
+import Search from "../../assets/Search";
+import Arrow from "../../assets/Arrow";
+import SellButton from "../../assets/SellButton";
+import SellButtonPlus from "../../assets/SellButtonPlus";
+import { AuthContext, FirebaseContext } from "../../store/Context";
+import { Link, useNavigate } from "react-router-dom";
+
+function Header({ onSearch  }) {
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const { firebase } = useContext(FirebaseContext);
+  const [searchQuery,setSearchQuery] = useState('')
+  
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -21,6 +34,8 @@ function Header() {
         <div className="productSearch">
           <div className="input">
             <input
+            value={searchQuery}
+            onChange={handleSearch}
               type="text"
               placeholder="Find car,mobile phone and more..."
             />
@@ -34,15 +49,31 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span>Login</span>
+          {user ? (
+            <span> Welcome {user.displayName}</span>
+          ) : (
+            <Link to={"/login"}>
+              <span>Login</span>
+            </Link>
+          )}
           <hr />
         </div>
+        {user && (
+          <span
+            onClick={() => {
+              firebase.auth().signOut();
+              navigate("/");
+            }}
+          >
+            Logout
+          </span>
+        )}
 
         <div className="sellMenu">
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+           <Link to={'/create'}> <span>SELL</span></Link>
           </div>
         </div>
       </div>
