@@ -12,6 +12,13 @@
   text-align: center; 
 }
 
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 .centerDiv form {
   display: flex;
   flex-direction: column; 

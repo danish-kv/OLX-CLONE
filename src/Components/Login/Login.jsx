@@ -30,6 +30,7 @@ function Login() {
             onChange={(e)=>setEmail(e.target.value)}
             type="email"
             id="email"
+            required  
             name="email"
             
           />
@@ -40,6 +41,7 @@ function Login() {
             onChange={(e)=>setPassword(e.target.value)}
             type="password"
             id="password"
+            required
             name="password"
           />
           <button>Login</button>

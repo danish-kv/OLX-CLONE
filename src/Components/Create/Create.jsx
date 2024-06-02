@@ -12,9 +12,29 @@ const Create = () => {
   const [category,setCategory] = useState('')
   const [price,setPrice] = useState('')
   const [image,setImage] = useState(null)
+  const [errors, setErrors] = useState({});
   const date = new Date()
 
-  const handleSubmit = (e)=>{
+  const validateForm = () => {
+    const errors = {};
+    if (!name) errors.name = 'Name is required';
+    if (!category) errors.category = 'Category is required';
+    if (!price) errors.price = 'Price is required';
+    if (!image) errors.image = 'Image is required';
+    return errors;
+  };
+
+
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      return;
+    }
+
     e.preventDefault()  
     firebase.storage().ref(`/image/${image.name}`).put(image).then(({ref})=>{
       ref.getDownloadURL().then((url) =>{
@@ -25,7 +45,7 @@ const Create = () => {
           price,
           url,
           userId : user.uid,
-          createAt: date.toDateString()
+          createAt: date.toDateString(),
         })
         navigate('/')
       })
@@ -46,6 +66,8 @@ const Create = () => {
             name="name"
             defaultValue="John"
           />
+          {errors.name && <p className="error">{errors.name}</p>}
+
           <label htmlFor="category">Category</label>
           <input
             className="input"
@@ -56,6 +78,8 @@ const Create = () => {
             name="category"
             defaultValue="John"
           />
+          {errors.category && <p className="error">{errors.category}</p>}
+
           <label htmlFor="price">Price</label>
           <input
             className="input"
@@ -65,10 +89,14 @@ const Create = () => {
             id="price"
             name="price"
           />
+          {errors.price && <p className="error">{errors.price}</p>}
+
         <img alt="Posts" width="200px" height="200px" src={image ? URL.createObjectURL(image) : ''} />
           <input type="file" onChange={(e)=>{
             setImage(e.target.files[0])
           }} />
+          {errors.image && <p className="error">{errors.image}</p>}
+
           <button onClick={handleSubmit} className="uploadBtn">Upload and Submit</button>
       </div>
     </Fragment>
